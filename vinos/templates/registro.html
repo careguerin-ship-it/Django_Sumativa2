@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpoVinos - Registro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="site">
+    <section id="header">
+      <a href="index.html">
+        <img src="assets/logovino.webp" class="logo" alt="logo">
+      </a>
+      <span class="menu-toggle" onclick="document.getElementById('navbar').classList.toggle('open')">&#9776;</span>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nacionales.html">Nacionales</a></li>
+          <li><a href="importados.html">Importados</a></li>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="ingresa.html">Ingresa</a></li>
+          <li><a class="active" href="registro.html">Registrarse</a></li>
+          <li><a href="perfil.html">Mi perfil</a></li>          
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-p1">
+      <h2>Crear Cuenta</h2>
+      <p>Regístrate para poder comprar y revisar tus pedidos.</p>
+
+      <form id="registroForm" class="login-form">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="clave">Contraseña</label>
+        <input type="password" id="clave" name="clave" required>
+
+        <label for="clave2">Repite tu contraseña</label>
+        <input type="password" id="clave2" name="clave2" required>
+
+        <!-- Mensajes de error -->
+        <p id="error" style="display:none;"></p>
+
+        <button type="submit">Registrarse</button>
+        <p class="registro">¿Ya tienes cuenta? <a href="ingresa.html">Inicia sesión</a></p>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer">
+        <p>© Todos los derechos reservados, Grupo 10 Semana 3</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById("registroForm");
+    const clave = document.getElementById("clave");
+    const clave2 = document.getElementById("clave2");
+    const error = document.getElementById("error");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let errores = [];
+
+      // 🔒 Validaciones de contraseña
+      if (clave.value.length < 8) errores.push("• Debe tener al menos 8 caracteres");
+      if (!/[A-Z]/.test(clave.value)) errores.push("• Debe contener al menos una letra mayúscula");
+      if (!/[0-9]/.test(clave.value)) errores.push("• Debe contener al menos un número");
+      if (!/[!@#$%^&*(),.?\":{}|<>]/.test(clave.value)) errores.push("• Debe contener al menos un carácter especial");
+
+      if (clave.value !== clave2.value) errores.push("• Las contraseñas no coinciden");
+
+      if (errores.length > 0) {
+        error.style.color = "red";
+        error.innerHTML = errores.join("<br>");
+        error.style.display = "block";
+      } else {
+        error.style.color = "green";
+        error.innerHTML = "✅ Registro exitoso. Redirigiendo a la página de ingreso...";
+        error.style.display = "block";
+
+        // Redirigir después de 2 segundos
+        setTimeout(function() {
+          window.location.href = "ingresa.html";
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>

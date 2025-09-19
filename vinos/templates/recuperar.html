@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpoVinos - Recuperar Contraseña</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="site">
+    <section id="header">
+      <a href="index.html">
+        <img src="assets/logovino.webp" class="logo" alt="logo">
+      </a>
+      <span class="menu-toggle" onclick="document.getElementById('navbar').classList.toggle('open')">&#9776;</span>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nacionales.html">Nacionales</a></li>
+          <li><a href="importados.html">Importados</a></li>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a class="active" href="ingresa.html">Ingresa</a></li>
+          <li><a href="registro.html">Registrarse</a></li>
+          <li><a href="perfil.html">Mi perfil</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-p1">
+      <h2>Recuperar Contraseña</h2>
+      <p>Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.</p>
+
+      <form id="recuperarForm" class="login-form">
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <!-- Mensaje de éxito/error -->
+        <p id="mensaje" style="display:none;"></p>
+
+        <button type="submit">Enviar enlace</button>
+        <p class="registro"><a href="ingresa.html">Volver al inicio de sesión</a></p>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer">
+        <p>© Todos los derechos reservados, Grupo 10 Semana 3</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById("recuperarForm");
+    const mensaje = document.getElementById("mensaje");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const correo = document.getElementById("correo").value;
+
+      if(correo) {
+        mensaje.style.color = "green";
+        mensaje.innerHTML = "✅ Enlace de recuperación enviado a tu correo.";
+        mensaje.style.display = "block";
+
+        // Opcional: redirigir al login después de 2 segundos
+        setTimeout(function() {
+          window.location.href = "ingresa.html";
+        }, 2000);
+      } else {
+        mensaje.style.color = "red";
+        mensaje.innerHTML = "⚠️ Por favor ingresa un correo válido.";
+        mensaje.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
