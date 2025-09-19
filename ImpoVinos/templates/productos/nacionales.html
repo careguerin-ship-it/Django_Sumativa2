@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpoVinos - Nacionales</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="site">
+    <section id="header">
+      <a href="{% url 'index' %}" class="logo-container">
+        <img src="{% static 'assets/logovino.webp' %}" class="logo" alt="logo">
+        <span class="nombre-empresa">ImpoVinos</span>
+      </a>
+
+      <!-- Botón hamburguesa -->
+      <span class="menu-toggle" onclick="document.getElementById('navbar').classList.toggle('open')">&#9776;</span>
+      <div>
+        <ul id="navbar">
+          <li><a href="{% url 'index' %}">Inicio</a></li>
+          <li><a class="active" href="{% url 'nacionales' %}">Nacionales</a></li>
+          <li><a href="{% url 'importados' %}">Importados</a></li>
+          <li><a href="{% url 'nosotros' %}">Sobre Nosotros</a></li>
+          <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          <li><a href="{% url 'ingresa' %}">Ingresa</a></li>
+          <li><a href="{% url 'registro' %}">Regístrate</a></li>
+          <li><a href="{% url 'perfil' %}">Mi perfil</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-p1">
+      <h2>Vinos Nacionales</h2>
+      <section class="bloques-categorias">
+            <div class="categoria">
+                <a href="#"><img src="{% static 'assets/cabsavnacional.webp' %}" alt="Cabernet Sauvignon"></a>
+                <h5>$85.000</h5>
+                <h4 class="piefoto">Santa Ema Amplus Cabernet Sauvignon</h4>
+                <button class="btn-comprar">Agregar al carrito</button>
+            </div>
+            <div class="categoria">
+                <a href="#"><img src="{% static 'assets/carmenerenacional.webp' %}" alt="Carmenere"></a>
+                <h5>$85.000</h5>
+                <h4 class="piefoto">Morandé Edición Limitada Carménère</h4>
+                <button class="btn-comprar">Agregar al carrito</button>
+            </div>
+            <div class="categoria">
+                <a href="#"><img src="{% static 'assets/chardonnaynacional.webp' %}" alt="Chardonnay"></a>
+                <h5>$70.000</h5>
+                <h4 class="piefoto">Casas del Bosque Botanic Series Chardonnay</h4>
+                <button class="btn-comprar">Agregar al carrito</button>
+            </div>
+            <div class="categoria">
+                <a href="#"><img src="{% static 'assets/malbecnacional.webp' %}" alt="Malbec"></a>
+                <h5>$35.000</h5>
+                <h4 class="piefoto">Caliterra Pétreo Malbec</h4>
+                <button class="btn-comprar">Agregar al carrito</button>
+            </div>
+            <div class="categoria">
+                <a href="#"><img src="{% static 'assets/rosenacional.webp' %}" alt="Rose"></a>
+                <h5>$15.000</h5>
+                <h4 class="piefoto">Viu Manent Secreto Rosé</h4>
+                <button class="btn-comprar">Agregar al carrito</button>
+            </div>
+            <div class="categoria">
+                <a href="#"><img src="{% static 'assets/savblancnacional.webp' %}" alt="Sauvignon Blanc"></a>
+                <h5>$68.000</h5>
+                <h4 class="piefoto">Morandé Vitis Unica Sauvignon Blanc</h4>
+                <button class="btn-comprar">Agregar al carrito</button>
+            </div>
+        </section>
+    </section>
+
+    <footer>
+      <div class="footer">
+        <p>© Todos los derechos reservados, Grupo 10 Semana 6</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

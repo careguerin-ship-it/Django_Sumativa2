@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpoVinos</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="site">
+    <section id="header">
+      <a href="{% url 'index' %}" class="logo-container">
+        <img src="{% static 'assets/logovino.webp' %}" class="logo" alt="logo">
+        <span class="nombre-empresa">ImpoVinos</span>
+      </a>
+
+      <!-- Botón hamburguesa -->
+      <span class="menu-toggle" onclick="document.getElementById('navbar').classList.toggle('open')">&#9776;</span>
+      <div>
+        <ul id="navbar">
+          <li><a class="active" href="{% url 'index' %}">Inicio</a></li>
+          <li><a href="{% url 'nacionales' %}">Nacionales</a></li>
+          <li><a href="{% url 'importados' %}">Importados</a></li>
+          <li><a href="{% url 'nosotros' %}">Sobre Nosotros</a></li>
+          <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          <li><a href="{% url 'ingresa' %}">Ingresa</a></li>
+          <li><a href="{% url 'registro' %}">Regístrate</a></li>
+          <li><a href="{% url 'perfil' %}">Mi perfil</a></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section id="hero">
+      <h3>Las mejores selecciones</h3>
+      <h1>Vinos Nacionales e Importados</h1>
+      <h4>Cepas variadas, Calidad asegurada</h4>
+      <a href="{% url 'comprar' %}">
+        <button>Comprar</button>
+      </a>
+    </section>
+
+    <footer>
+      <div class="footer">
+        <p>© Todos los derechos reservados, Grupo 10 Semana 6</p>
+      </div>
+    </footer>
+  </div>
+</script>
+</body>
+</html>

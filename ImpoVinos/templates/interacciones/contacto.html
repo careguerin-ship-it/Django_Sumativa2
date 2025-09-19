@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpoVinos - Contacto</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="site">
+    <section id="header">
+      <a href="{% url 'index' %}" class="logo-container">
+        <img src="{% static 'assets/logovino.webp' %}" class="logo" alt="logo">
+        <span class="nombre-empresa">ImpoVinos</span>
+      </a>
+
+      <!-- Botón hamburguesa -->
+      <span class="menu-toggle" onclick="document.getElementById('navbar').classList.toggle('open')">&#9776;</span>
+      <div>
+        <ul id="navbar">
+          <li><a href="{% url 'index' %}">Inicio</a></li>
+          <li><a href="{% url 'nacionales' %}">Nacionales</a></li>
+          <li><a href="{% url 'importados' %}">Importados</a></li>
+          <li><a href="{% url 'nosotros' %}">Sobre Nosotros</a></li>
+          <li><a class="active"  href="{% url 'contacto' %}">Contacto</a></li>
+          <li><a href="{% url 'ingresa' %}">Ingresa</a></li>
+          <li><a href="{% url 'registro' %}">Regístrate</a></li>
+          <li><a href="{% url 'perfil' %}">Mi perfil</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-p1">
+      <h2>Contáctanos</h2>
+      <p>Si tienes dudas o consultas, mándanos un mensaje:</p>
+
+      <form class="contact-form">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer">
+        <p>© Todos los derechos reservados, Grupo 10 Semana 6</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
