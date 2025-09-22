@@ -7,11 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ImpoVinos - Registro</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
 <body>
   <div class="site">
     
-     {% include 'misc/navbar.html' %} 
+    {% include 'misc/navbar.html' %} 
 
     <section class="section-p1">
       <h2>Crear Cuenta</h2>
@@ -30,7 +29,6 @@
         <label for="clave2">Repite tu contraseña</label>
         <input type="password" id="clave2" name="clave2" required>
 
-        <!-- Mensajes de error -->
         <p id="error" style="display:none;"></p>
 
         <button type="submit">Registrarse</button>
@@ -45,39 +43,7 @@
     </footer>
   </div>
 
-  <script>
-    const form = document.getElementById("registroForm");
-    const clave = document.getElementById("clave");
-    const clave2 = document.getElementById("clave2");
-    const error = document.getElementById("error");
+  <script src="{% static 'scripts/scripts.js' %}"></script>
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      let errores = [];
-
-      // 🔒 Validaciones de contraseña
-      if (clave.value.length < 8) errores.push("• Debe tener al menos 8 caracteres");
-      if (!/[A-Z]/.test(clave.value)) errores.push("• Debe contener al menos una letra mayúscula");
-      if (!/[0-9]/.test(clave.value)) errores.push("• Debe contener al menos un número");
-      if (!/[!@#$%^&*(),.?\":{}|<>]/.test(clave.value)) errores.push("• Debe contener al menos un carácter especial");
-
-      if (clave.value !== clave2.value) errores.push("• Las contraseñas no coinciden");
-
-      if (errores.length > 0) {
-        error.style.color = "red";
-        error.innerHTML = errores.join("<br>");
-        error.style.display = "block";
-      } else {
-        error.style.color = "green";
-        error.innerHTML = "✅ Registro exitoso. Redirigiendo a la página de ingreso...";
-        error.style.display = "block";
-
-        // Redirigir después de 2 segundos
-        setTimeout(function() {
-          window.location.href = "{% url 'ingresa' %}";
-        }, 2000);
-      }
-    });
-  </script>
 </body>
 </html>

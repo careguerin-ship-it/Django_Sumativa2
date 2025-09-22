@@ -36,29 +36,7 @@
     </footer>
   </div>
 
-  <script>
-    const form = document.getElementById("recuperarForm");
-    const mensaje = document.getElementById("mensaje");
-
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      const correo = document.getElementById("correo").value;
-
-      if(correo) {
-        mensaje.style.color = "green";
-        mensaje.innerHTML = "✅ Enlace de recuperación enviado a tu correo.";
-        mensaje.style.display = "block";
-
-        // Opcional: redirigir al login después de 2 segundos
-        setTimeout(function() {
-          window.location.href = "{% url 'ingresa' %}";
-        }, 2000);
-      } else {
-        mensaje.style.color = "red";
-        mensaje.innerHTML = "⚠️ Por favor ingresa un correo válido.";
-        mensaje.style.display = "block";
-      }
-    });
-  </script>
+  <script src="{% static 'scripts/scripts.js' %}"></script>
+  
 </body>
 </html>
