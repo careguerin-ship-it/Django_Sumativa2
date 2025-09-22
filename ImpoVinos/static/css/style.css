@@ -490,3 +490,37 @@ img.logo { max-width: 70px; }
         font-size: 2rem;
     }
 }
+
+/* Estilos para el contenedor de mensajes */
+.messages-container {
+    list-style: none;
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    position: fixed; /* Posiciona el contenedor de forma fija */
+    top: 0; /* Lo fija en la parte superior de la ventana */
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    box-sizing: border-box;
+}
+
+.messages-container li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos específicos para cada tipo de mensaje */
+.messages-container .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.messages-container .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

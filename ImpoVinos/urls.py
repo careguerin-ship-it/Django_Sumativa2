@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Para la landing page
@@ -22,4 +23,8 @@ urlpatterns = [
     path("usuarios/recuperar/", views.recuperar, name="recuperar"),
     path("usuarios/perfil/", views.perfil, name="perfil"),
     path("usuarios/modificar/", views.modificarPerfil, name="modificarPerfil"),
+    path("usuarios/ingresa_admin/", views.ingresa_admin, name="ingresa_admin"),
+
+    # URL para cerrar sesión
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
 ]
