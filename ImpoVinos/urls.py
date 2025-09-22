@@ -10,7 +10,7 @@ urlpatterns = [
     path("interacciones/nosotros/", views.nosotros, name="nosotros"),
     path("interacciones/contacto/", views.contacto, name="contacto"),
     path("interacciones/carrito/", views.carrito, name="carrito"),
-    path("interacciones/Inventario/", views.Inventario, name="Inventario"),
+    path("interacciones/inventario/", views.Inventario, name="inventario"),
 
     # Productos
     path("productos/nacionales/", views.prod_nacionales, name="nacionales"),
