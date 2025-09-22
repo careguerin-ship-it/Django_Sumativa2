@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 
-class VinosConfig(AppConfig):
+class ImpovinosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'vinos'
+    name = 'ImpoVinos'
+
