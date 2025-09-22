@@ -9,9 +9,16 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+  {% if messages %}
+    <ul class="messages-container">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <div class="site">
-    
-     {% include 'misc/navbar.html' %} 
+    {% include 'misc/navbar.html' %} 
 
     <section id="hero">
       <h3>Las mejores selecciones</h3>
@@ -28,6 +35,5 @@
       </div>
     </footer>
   </div>
-
 </body>
 </html>

@@ -8,14 +8,30 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
+      {% if messages %}
+    <ul class="messages-container">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+      {% endif %}
+
     <div class="site">
-        <section id="header">
+        
             {% include 'misc/navbar.html' %} 
-        </section>
+
 
         <section id="formulario">
             <h2>Ingreso Administrador</h2>
-            <form id="adminForm">
+            <form id="adminForm" method="post" action="{% url 'ingresa_admin' %}">
+                {% csrf_token %} {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
                 <label for="usuario">Usuario Administrador:</label>
                 <input type="text" id="usuario" name="usuario" required>
 

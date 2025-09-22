@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -68,3 +70,33 @@ def perfil(request):
 
 def modificarPerfil(request): #aqui ojo que el html tiene una mayuscula (camelCase)
     return render(request, "usuarios/modificarPerfil.html")
+
+def ingresa_admin(request):
+    if request.method == 'POST':
+        usuario = request.POST.get('usuario')
+        # Cambia 'clave' por 'password' para que coincida con tu HTML
+        password = request.POST.get('password') 
+
+        # Usa la nueva variable 'password' para autenticar
+        user = authenticate(request, username=usuario, password=password)
+
+        if user is not None:
+            if user.is_superuser or user.is_staff:
+                login(request, user)
+                messages.success(request, '¡Has ingresado como administrador!')
+                return redirect('index')
+            else:
+                messages.error(request, 'No tienes permisos de administrador.')
+                return render(request, "usuarios/admin.html")
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos.')
+            return render(request, "usuarios/admin.html")
+            
+    return render(request, "usuarios/admin.html")
+
+def es_admin(user):
+    return user.is_superuser or user.is_staff
+
+@user_passes_test(es_admin, login_url='/usuarios/ingresa_admin/') # Redirige si no tiene acceso
+def Inventario(request):
+    return render(request, "interacciones/Inventario.html")
