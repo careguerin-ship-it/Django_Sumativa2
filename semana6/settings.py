@@ -79,11 +79,11 @@ DATABASES = {
         'NAME': 'localhost:1521/free',
         'USER': 'C##SEMANA6',
         'PASSWORD': 'SEMANA6',
-        'TEST' : {
-            'USER' : 'default_test',
-            'TBLSPACE' : 'default_test_tbls',
-            'TBLSPACE_TMP': 'default_test_tbls_tmp',      
-        }
+        #'TEST' : {
+            #'USER' : 'default_test',
+            #'TBLSPACE' : 'default_test_tbls',
+            #'TBLSPACE_TMP': 'default_test_tbls_tmp',      
+        #}
     }
 }
 
