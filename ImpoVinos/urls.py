@@ -11,7 +11,10 @@ urlpatterns = [
     path("interacciones/nosotros/", views.nosotros, name="nosotros"),
     path("interacciones/contacto/", views.contacto, name="contacto"),
     path("interacciones/carrito/", views.carrito, name="carrito"),
-    path("interacciones/inventario/", views.Inventario, name="inventario"),
+    # Línea corregida: el nombre de la función debe ser 'Inventario'
+    path("interacciones/inventario/", views.Inventario, name="inventario"), 
+    path('eliminar_vino/<int:vino_id>/', views.eliminar_vino, name='eliminar_vino'),
+    
 
     # Productos
     path("productos/nacionales/", views.prod_nacionales, name="nacionales"),
