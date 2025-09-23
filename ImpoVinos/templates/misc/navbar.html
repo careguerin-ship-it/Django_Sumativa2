@@ -23,6 +23,8 @@
         {% if request.user.is_superuser or request.user.is_staff %}
             <li><a href="{% url 'inventario' %}" {% if request.resolver_match.url_name == 'inventario' %}class="active"{% endif %}>Inventario</a></li>
             <li><a href="/admin/" {% if request.path|slice:":6" == '/admin' %}class="active"{% endif %}>Admin</a></li>
+        {% else %}
+            <li><a href="{% url 'carrito' %}" {% if request.resolver_match.url_name == 'carrito' %}class="active"{% endif %}>Carrito</a></li>    
         {% endif %}
         <li><a href="{% url 'perfil' %}">Mi Perfil</a></li>
         

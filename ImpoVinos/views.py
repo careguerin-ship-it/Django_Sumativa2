@@ -168,3 +168,4 @@ def eliminar_vino(request, vino_id):
     if request.method == 'POST':
         vino.delete()
     return redirect('inventario')
+
