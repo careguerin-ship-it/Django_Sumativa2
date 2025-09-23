@@ -15,128 +15,72 @@
 
     <section class="section-p1">
       <h2>Gestión de Inventario</h2>
-      <form class="form-inventario">
-        <label for="producto">Nombre del Producto:</label>
-        <input type="text" id="producto" name="producto" required>
 
-        <label for="categoria">Categoría:</label>
-        <select id="categoria" name="categoria">
-          <option value="nacional">Nacional</option>
-          <option value="importado">Importado</option>
-        </select>
+    <form class="form-inventario" method="post">
+      {% csrf_token %}
+      <label for="producto">Nombre del Producto:</label>
+      <input type="text" id="producto" name="producto" required>
 
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" min="1" required>
+      <label for="categoria">Categoría:</label>
+      <select id="categoria" name="categoria" required>
+        {% for cat in categorias %}
+          <option value="{{ cat.id }}">{{ cat.nombre }}</option>
+        {% endfor %}
+      </select>
 
-        <label for="precio">Precio (CLP):</label>
-        <input type="number" id="precio" name="precio" min="0" required>
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" required>
 
-        <button type="submit" onclick="alert('Producto agregado al inventario')">Registrar Producto</button>
-      </form>
+      <label for="precio">Precio (CLP):</label>
+      <input type="number" id="precio" name="precio" min="0" required>
 
-      <h3>Lista de Productos</h3>
-      <table class="tabla-inventario">
+      <label for="pais">País de Origen:</label>
+      <input type="text" id="pais" name="pais">
+
+      <label for="anio">Año:</label>
+      <input type="number" id="anio" name="anio">
+
+      <button type="submit" name="agregar">Registrar Producto</button>
+    </form>
+
+      <h3>Vinos en Inventario</h3>
+      <table class="inventario-table">
         <thead>
           <tr>
             <th>Producto</th>
             <th>Categoría</th>
-            <th>Cantidad</th>
+            <th>Stock</th>
             <th>Precio</th>
-            <th>Acción</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Vinos Nacionales -->
+          {% for vino in vinos %}
           <tr>
-            <td>Santa Ema Amplus Cabernet Sauvignon</td>
-            <td>Nacional</td>
-            <td>50</td>
-            <td>$85.000</td>
-            <td><button>Eliminar</button></td>
+            <td>{{ vino.nombre }} - {{ vino.pais_origen }}</td>
+            <td>{{ vino.categoria.nombre }}</td>
+            <td>{{ vino.stock }}</td>
+            <td>${{ vino.precio }}</td>
+            <td>
+              <!-- Form para borrar -->
+              <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="vino_id" value="{{ vino.id }}">
+                <input type="number" name="cantidad" min="1" max="{{ vino.stock }}" placeholder="Cantidad">
+                <button type="submit" name="eliminar">Eliminar</button>
+                <small>(dejar vacío para eliminar todo)</small>
+              </form>
+            </td>
           </tr>
+          {% empty %}
           <tr>
-            <td>Morandé Edición Limitada Carménère</td>
-            <td>Nacional</td>
-            <td>30</td>
-            <td>$85.000</td>
-            <td><button>Eliminar</button></td>
+            <td colspan="5">No hay vinos en el inventario.</td>
           </tr>
-          <tr>
-            <td>Casas del Bosque Botanic Series Chardonnay</td>
-            <td>Nacional</td>
-            <td>40</td>
-            <td>$70.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Caliterra Pétreo Malbec</td>
-            <td>Nacional</td>
-            <td>25</td>
-            <td>$35.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Viu Manent Secreto Rosé</td>
-            <td>Nacional</td>
-            <td>60</td>
-            <td>$15.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Morandé Vitis Unica Sauvignon Blanc</td>
-            <td>Nacional</td>
-            <td>35</td>
-            <td>$68.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-
-          <!-- Vinos Importados -->
-          <tr>
-            <td>Solar Viejo You & Me Albariño - España</td>
-            <td>Importado</td>
-            <td>50</td>
-            <td>$20.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Luigi Bosca De Sangre Cabernet Sauvignon - Argentina</td>
-            <td>Importado</td>
-            <td>30</td>
-            <td>$21.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>El Enemigo Chardonnay - Argentina</td>
-            <td>Importado</td>
-            <td>20</td>
-            <td>$41.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Catena Zapata Angelica Zapata Malbec - Argentina</td>
-            <td>Importado</td>
-            <td>15</td>
-            <td>$72.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Champagne Pol Roger Sir Winston Churchill - Francia</td>
-            <td>Importado</td>
-            <td>10</td>
-            <td>$470.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
-          <tr>
-            <td>Freixenet Pinot Grigio - Italia</td>
-            <td>Importado</td>
-            <td>25</td>
-            <td>$22.000</td>
-            <td><button>Eliminar</button></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </section>
-
+    <p>Total vinos en base: {{ vinos.count }}</p>
     <footer>
       <div class="footer">
         <p>© Todos los derechos reservados, Grupo 10 Semana 6</p>
